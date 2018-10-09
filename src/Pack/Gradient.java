@@ -77,15 +77,4 @@ public class Gradient {
 		}
 		return true;
 	}
-	//softmax
-	private static double softmax(double v) {
-		return 1.0;
-	}
-
-	private static boolean softmax(Matrix affine , Matrix result) {
-		for(int i = 0; i < affine.value.size() ; i++) {
-			result.value.set(i, softmax(affine.value.get(i)));
-		}
-		return true;
-	}
 }
