@@ -3,11 +3,6 @@ package Pack;
 public class Gradient {
 	public static boolean cal(String name , Matrix affine , Matrix out) {
 		
-		if(name == "softmax") {
-			softmax(affine, out);
-			return true;
-		}
-		
 		if(name == "sigmoid") {
 			sigmoid(affine, out);
 			return true;
