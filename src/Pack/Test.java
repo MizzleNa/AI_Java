@@ -3,7 +3,7 @@ package Pack;
 public class Test {
 
 	public Test() {
-		//Ch1();
+		Ch1();
 		//Ch2();
 		//Ch3();
 		//Ch4();
@@ -12,7 +12,7 @@ public class Test {
 		//Ch7();
 		//Ch8();
 		//Ch9();
-		Ch10();
+		//Ch10();
 	}
 	
 	public void Ch1() {
