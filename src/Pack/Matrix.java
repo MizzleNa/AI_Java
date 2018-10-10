@@ -3,9 +3,9 @@ package Pack;
 import java.util.Vector;
 
 public class Matrix {
-	Vector<Double> value;
-	int col;
-	int row;
-	String name;
+	public Vector<Double> value;
+	public int col;
+	public int row;
+	public String name;
 	
 }

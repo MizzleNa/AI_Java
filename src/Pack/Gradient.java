@@ -1,6 +1,23 @@
 package Pack;
 
 public class Gradient {
+	public static boolean cal(Layer y) {
+		//gradient
+		cal(
+			y.options.activity_gradient,
+			y.matrixs.get(0),
+			y.matrixs.get(3)
+		);
+		//loss*gradient
+		Cal.multiply(
+			y.matrixs.get(2), 
+			y.matrixs.get(3), 
+			y.matrixs.get(4)
+		);
+		
+		return true;
+	}
+	
 	public static boolean cal(String name , Matrix affine , Matrix out) {
 		
 		if(name == "sigmoid") {
@@ -26,11 +43,11 @@ public class Gradient {
 	}
 	
 	//line
-	private static double line(double v) {
+	public static double line(double v) {
 		return 1;
 	}
 	
-	private static boolean line(Matrix affine , Matrix result) {
+	public static boolean line(Matrix affine , Matrix result) {
 		for(int i = 0; i < affine.value.size() ; i++) {
 			result.value.set(i, line(affine.value.get(i)));
 		}
@@ -38,11 +55,11 @@ public class Gradient {
 	}
 	
 	//sigmoid
-	private static double sigmoid(double v) {
+	public static double sigmoid(double v) {
 		return ( 1.0 / (1.0+Math.exp(-v))) * (1.0 - ( 1.0 / (1.0+Math.exp(-v))));
 	}
 
-	private static boolean sigmoid(Matrix affine , Matrix result) {
+	public static boolean sigmoid(Matrix affine , Matrix result) {
 		for(int i = 0; i < affine.value.size() ; i++) {
 			result.value.set(i, sigmoid(affine.value.get(i)));
 		}
@@ -50,11 +67,11 @@ public class Gradient {
 	}
 	
 	//relu
-	private static double relu(double v) {
+	public static double relu(double v) {
 		return v > 0.0 ? 1.0 : 0.0;
 	}
 
-	private static boolean relu(Matrix affine , Matrix result) {
+	public static boolean relu(Matrix affine , Matrix result) {
 		for(int i = 0; i < affine.value.size() ; i++) {
 			result.value.set(i, relu(affine.value.get(i)));
 		}
@@ -62,11 +79,11 @@ public class Gradient {
 	}
 	
 	//tanh
-	private static double tanh(double v) {
+	public static double tanh(double v) {
 		return (1.0-Math.tanh(v))*(1.0+Math.tanh(v));
 	}
 
-	private static boolean tanh(Matrix affine , Matrix result) {
+	public static boolean tanh(Matrix affine , Matrix result) {
 		for(int i = 0; i < affine.value.size() ; i++) {
 			result.value.set(i, tanh(affine.value.get(i)));
 		}

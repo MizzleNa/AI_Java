@@ -1,7 +1,15 @@
 package Pack;
 
 public class Print {
-	public static void  matrix(Matrix matrix) {
+	public static void layer(Layer layer) {
+		System.out.println("==========" + layer.options.name + "==========");
+		
+		for(Matrix mtx : layer.matrixs) {
+			matrix(mtx);
+		}
+	}
+	
+	public static void matrix(Matrix matrix) {
 		System.out.println("Name : " + matrix.name);
 		System.out.println("Col : " + matrix.col + "\tRow : "+ matrix.row);
 		for(int c = 0; c < matrix.col ; c++) {

@@ -2,6 +2,17 @@ package Pack;
 
 
 public class Cost {
+	public static boolean cal(Layer y , Layer t) {
+		cal(
+			y.options.cost_loss,
+			t.matrixs.get(0),
+			y.matrixs.get(1),
+			y.matrixs.get(5)
+		);
+		
+		return true;
+	}
+	
 	public static boolean cal(String name  , Matrix t , Matrix y, Matrix out) {
 		if(name == "meansquare") {
 			meansquare(t,y,out);

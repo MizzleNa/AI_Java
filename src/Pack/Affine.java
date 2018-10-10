@@ -40,4 +40,27 @@ public class Affine {
 
 		return true;
 	}
+
+	public static boolean cal(Layer w, Layer x, Layer y , boolean reverse) {
+		if(reverse) {
+			//backward
+			Cal.transpose(w.matrixs.get(0), w.matrixs.get(0));
+			cal(w.matrixs.get(0), x.matrixs.get(4), y.matrixs.get(2));
+			Cal.transpose(w.matrixs.get(0), w.matrixs.get(0));
+		}else {
+			//forward
+			int matchs = 1;
+			if(x.options.name == "input") {
+				matchs = 0;
+			}
+			
+			if(w.options.bias) {
+				//get(0) : w , get(1) : dw , get(2) : b , get(3) : db
+				cal(w.matrixs.get(0), x.matrixs.get(matchs), w.matrixs.get(2), y.matrixs.get(0));
+			}else {
+				cal(w.matrixs.get(0), x.matrixs.get(matchs), y.matrixs.get(0));
+			}
+		}
+		return true;
+	}
 }
