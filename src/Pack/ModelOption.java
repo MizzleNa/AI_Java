@@ -2,7 +2,7 @@ package Pack;
 
 import java.util.Vector;
 
-public class ModelOption {
-	Vector<Integer> step;
-	int epoch;
+public class ModelOption extends LayerOption{
+	public Vector<Integer> step;
+	public int epoch;
 }

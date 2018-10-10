@@ -3,15 +3,17 @@ package Pack;
 public class Activity {
 	
 	public static boolean cal(Layer affine) {
-		cal(
-			affine.options.activity_gradient,
-			affine.matrixs.get(0),
-			affine.matrixs.get(1)
-		);
+		
 		if(affine.options.softmax) {
 			cal(
 				"softmax",
-				affine.matrixs.get(1),
+				affine.matrixs.get(0),
+				affine.matrixs.get(1)
+			);
+		}else {
+			cal(
+				affine.options.activity_gradient,
+				affine.matrixs.get(0),
 				affine.matrixs.get(1)
 			);
 		}

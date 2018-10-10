@@ -1,7 +1,7 @@
 package Pack;
 
 public class Loss {
-	public static boolean cal(Layer y , Layer t) {
+	public static boolean cal(Layer t , Layer y) {
 		cal(
 			y.options.cost_loss,
 			t.matrixs.get(0),
@@ -38,8 +38,8 @@ public class Loss {
 	}
 	//crossentropy
 	private static double crossentropy(double t, double y) {
-		double hyper = 0.00001;
-		double loss = -((y+hyper)-t)/((y+hyper)*(1.0-(y+hyper) ));
+		double hyper = 1.0E20;
+		double loss = -( ( t-(y+hyper) )/( (y+hyper) * (1.0-(y+hyper) ) ) );
 		return loss;
 	}
 	

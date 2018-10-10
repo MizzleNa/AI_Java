@@ -3,27 +3,27 @@ package Chapter;
 import NeuralNetwork.ANN;
 import Pack.*;
 
-public class Chp12 {
-	public Chp12() {
+public class Chp13 {
+	public Chp13() {
 		test();
 	}
 	
 	public void test() {
 		//IO
-		Matrix inputDataSet = IO.fileMatrix("D:/DataSet/iris/train.txt");
-		Matrix targetDataSet = IO.fileMatrix("D:/DataSet/iris/target.txt");
+		Matrix inputDataSet = IO.fileMatrix("D:/DataSet/xor/train.txt");
+		Matrix targetDataSet = IO.fileMatrix("D:/DataSet/xor/target.txt");
 				
 		//Model Set		
-		String activity_gradient = "sigmoid";
+		String activity_gradient = "relu";
 		
-		String cost_loss = "meansquare";
-		boolean softmax = false;
+		String cost_loss = "crossentropy";
+		boolean softmax = true;
 		
 		boolean bias = true;
-		double weight_parameter = 0.05;
+		double weight_parameter = 0.01;
 		
 		String update = "sgd";
-		int epoch = 1000;
+		int epoch = 100;
 		
 		ModelOption options = Make.modeloption(
 			epoch,
@@ -33,7 +33,7 @@ public class Chp12 {
 			bias, 
 			softmax, 
 			weight_parameter, 
-			inputDataSet.row , 4, 3, targetDataSet.row
+			inputDataSet.row , 3, targetDataSet.row
 		);
 		
 		Model model = Make.model(options);
@@ -42,7 +42,9 @@ public class Chp12 {
 		ann.test(model, inputDataSet, targetDataSet);
 	}
 	
-	public static void main(String args[]) {
-		new Chp12();
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new Chp13();
 	}
+
 }

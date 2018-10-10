@@ -150,11 +150,43 @@ public class Make {
 		model.options = options;
 		
 		for(int i = 0 ; i < model.options.step.size() ; i++) {
-			
+			if(i == 0) {
+				LayerOption inputoption = layeroption("input", model.options.step.get(i), 1);
+				model.layers.add(layer(inputoption));
+			}else if(i == model.options.step.size()-1) {
+				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.softmax, options.weight_parameter);
+				model.layers.add(layer(weightoption));
+				LayerOption outputoption = layeroption("output", model.options.step.get(i), 1 , options.activity_gradient , options.cost_loss , options.softmax);
+				model.layers.add(layer(outputoption));
+			}else {
+				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.softmax, options.weight_parameter);
+				model.layers.add(layer(weightoption));
+				LayerOption hiddenoption = Make.layeroption("hidden", model.options.step.get(i), 1 , options.activity_gradient);
+				model.layers.add(layer(hiddenoption));
+			}
 		}
+		LayerOption targetoption = layeroption("target", model.options.step.lastElement(), 1);
+		model.layers.add(layer(targetoption));
 		
 		return model;
 	}
+	
+	public static ModelOption modeloption(int epoch, String activity_gradient, String cost_loss, String update, boolean bias, boolean softmax, double weight_parameter, int... step) {
+		ModelOption option = new ModelOption();
+		option.step =  new Vector<Integer>();
+		for(Integer st : step) {
+			option.step.add(st);
+		}
+		
+		option.epoch = epoch;
+		option.activity_gradient = activity_gradient;
+		option.cost_loss = cost_loss;
+		option.update = update;
+		option.bias = bias;
+		option.softmax = softmax;
+		option.weight_parameter = weight_parameter;
 
+		return option;
+	}
 
 }

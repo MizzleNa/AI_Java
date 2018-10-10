@@ -52,7 +52,7 @@ public class Chp11 {
 				Activity.cal(output);
 
 				//Backward
-				Loss.cal(output, target);
+				Loss.cal(target, output);
 				Gradient.cal(output);
 				
 				Affine.cal(weight2, output, hidden, true);

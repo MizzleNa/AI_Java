@@ -26,7 +26,8 @@ public class Cost {
 	}
 	//cross_entropy
 	private static double crossentropy(double t, double y) {
-		return -(t*Math.log(y) + (1.0-t)*Math.log(1.0-y));
+		double hyper = 1.0E20;
+		return -(t*Math.log(y+hyper) + (1.0-t)*Math.log(1.0-y+hyper));
 	}
 	
 	private static boolean crossentropy(Matrix t, Matrix y, Matrix result) {
