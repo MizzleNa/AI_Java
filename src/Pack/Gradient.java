@@ -2,33 +2,23 @@ package Pack;
 
 public class Gradient {
 	public static boolean cal(Layer y) {
-		if(y.options.softmax) {
-			//gradient
-			cal(
-				"softmax",
-				y.matrixs.get(0),
-				y.matrixs.get(3)
-			);
-			//loss*gradient
-			Cal.multiply(
-				y.matrixs.get(2), 
-				y.matrixs.get(3), 
-				y.matrixs.get(4)
-			);
-		}else {
-			//gradient
-			cal(
-				y.options.activity_gradient,
-				y.matrixs.get(0),
-				y.matrixs.get(3)
-			);
-			//loss*gradient
-			Cal.multiply(
-				y.matrixs.get(2), 
-				y.matrixs.get(3), 
-				y.matrixs.get(4)
-			);
+		String activity_gradient = y.options.activity_gradient;
+		
+		if(y.options.softmax && y.options.name == "output") {
+			activity_gradient = "softmax";
 		}
+		//gradient
+		cal(
+			activity_gradient,
+			y.matrixs.get(0),
+			y.matrixs.get(3)
+		);
+		//loss*gradient
+		Cal.multiply(
+			y.matrixs.get(2), 
+			y.matrixs.get(3), 
+			y.matrixs.get(4)
+		);
 		return true;
 	}
 	
@@ -63,7 +53,7 @@ public class Gradient {
 	
 	//softmax
 	public static double softmax(double v) {
-		return 1;
+		return 1.0;
 	}
 
 	public static boolean softmax(Matrix affine , Matrix result) {
@@ -75,7 +65,7 @@ public class Gradient {
 		
 	//line
 	public static double line(double v) {
-		return 1;
+		return 1.0;
 	}
 	
 	public static boolean line(Matrix affine , Matrix result) {

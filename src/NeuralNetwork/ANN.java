@@ -9,6 +9,7 @@ public class ANN {
 	
 	public void train(Model model, Matrix inputDataSet, Matrix targetDataSet) {
 		int depth = inputDataSet.col;
+
 		for(int epo = 0 ; epo < model.options.epoch ; epo++) {
 			for(int dep = 0 ; dep < depth ; dep++) {
 				//IO

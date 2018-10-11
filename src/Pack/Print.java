@@ -21,11 +21,26 @@ public class Print {
 		System.out.println();
 	}
 	
-	public static void valuePrint(Matrix matrix) {
-		System.out.print(" : " + matrix.name + "\t");
+	public static void value(Matrix matrix) {
 		for(int i = 0; i < matrix.col*matrix.row ; i++) {
 			System.out.print(matrix.value.get(i)+"\t");
 		}
+		System.out.println();
+	}
+	
+	public static void layeroption(LayerOption option) {
+		System.out.println("name : " +option.name);
+		System.out.println("col : " +option.col);
+		System.out.println("row : " +option.row);
+		
+		System.out.println("activity_gradient : " +option.activity_gradient);
+		System.out.println("cost_loss : " +option.cost_loss);
+		System.out.println("update : " +option.update);
+		
+		System.out.println("weight_parameter : " +option.weight_parameter);
+		System.out.println("bias : " +option.bias);
+		System.out.println("softmax : " +option.softmax);
+		
 		System.out.println();
 	}
 }

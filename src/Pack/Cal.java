@@ -67,6 +67,15 @@ public class Cal {
 		return true;
 	}
 	
+	public static boolean pow(Matrix matrix1, double value, Matrix result) {
+		int size = matrix1.col*matrix1.row;
+		
+		for(int i = 0 ; i < size ; i++) {
+			result.value.set(i, Math.pow(matrix1.value.get(i),value) );
+		}
+		return true;
+	}
+	
 	public static boolean divide(Matrix matrix1, double value, Matrix result) {
 		int size = matrix1.col*matrix1.row;
 		

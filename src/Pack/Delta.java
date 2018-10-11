@@ -17,21 +17,9 @@ public class Delta {
 			weight.matrixs.get(1)
 		);
 		
-		Cal.multiply(
-			weight.matrixs.get(1), 
-			weight.options.weight_parameter, 
-			weight.matrixs.get(1)
-		);
-		
 		if(weight.options.bias) {
 			bias(
 				before.matrixs.get(4),
-				weight.matrixs.get(3)
-			);
-			
-			Cal.multiply(
-				weight.matrixs.get(3), 
-				weight.options.weight_parameter, 
 				weight.matrixs.get(3)
 			);
 		}

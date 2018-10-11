@@ -19,11 +19,12 @@ public class Chp13 {
 		String cost_loss = "crossentropy";
 		boolean softmax = true;
 		
-		boolean bias = true;
 		double weight_parameter = 0.01;
+		boolean bias = true;
 		
-		String update = "sgd";
-		int epoch = 100;
+		String update = "adagrad";
+		
+		int epoch = 1000;
 		
 		ModelOption options = Make.modeloption(
 			epoch,
@@ -40,6 +41,7 @@ public class Chp13 {
 		ANN ann = new ANN();
 		ann.train(model, inputDataSet, targetDataSet);
 		ann.test(model, inputDataSet, targetDataSet);
+		
 	}
 	
 	public static void main(String[] args) {

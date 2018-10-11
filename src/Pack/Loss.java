@@ -8,7 +8,6 @@ public class Loss {
 			y.matrixs.get(1),
 			y.matrixs.get(2)
 		);
-		
 		return true;
 	}
 	
@@ -23,7 +22,7 @@ public class Loss {
 		}
 		return true;
 	}
-	//meansquare
+	//mean square
 	private static double meansquare(double t, double y) {
 		double loss = (t-y);
 		return loss;
@@ -36,11 +35,22 @@ public class Loss {
 		}
 		return true;
 	}
-	//crossentropy
+	//cross entropy
 	private static double crossentropy(double t, double y) {
-		double hyper = 1.0E20;
-		double loss = -( ( t-(y+hyper) )/( (y+hyper) * (1.0-(y+hyper) ) ) );
-		return loss;
+		//-{ ( t / y ) - ( 1 - t ) / ( 1 - y ) }
+		//return t-y;
+		
+		if(t != 0 && t != 1) {
+			return  -( ( y / t ) - ( 1 - y ) / ( 1 - t ) );
+		}
+		if(t == 0) {
+			return ( 1 - y ) / ( 1 - t );
+		}
+		if(t == 1) {
+			return -( y / t );
+		}
+		return 0;
+		
 	}
 	
 	private static boolean crossentropy(Matrix t, Matrix y, Matrix result) {

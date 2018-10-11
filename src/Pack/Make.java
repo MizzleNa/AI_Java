@@ -24,6 +24,10 @@ public class Make {
 			for(int size = 0; size < col *row ; size++) {
 				matrix.value.add(value++);
 			}
+		}else if(type.equals("softrand")) {
+			for(int size = 0; size < col *row ; size++) {
+				matrix.value.add(Math.random());
+			}
 		}else {
 			//기본은 모든 값 0으로 설정
 			for(int size = 0; size < col *row ; size++) {
@@ -54,15 +58,22 @@ public class Make {
 			layer.matrixs.add(Make.matrix(option.name, "zero", option.col, option.row));
 		}
 		if(option.name.equals("weight")) {
-			layer.matrixs.add(Make.matrix("w", "rand", option.col, option.row));
-			layer.matrixs.add(Make.matrix("dw", "rand", option.col, option.row));
+			String randname = "rand";
+			
+			layer.matrixs.add(Make.matrix("w", randname, option.col, option.row));
+			layer.matrixs.add(Make.matrix("dw", "zero", option.col, option.row));
 			if(option.bias) {
-				layer.matrixs.add(Make.matrix("b", "rand", option.col, 1));
-				layer.matrixs.add(Make.matrix("db", "rand", option.col, 1));
+				layer.matrixs.add(Make.matrix("b", randname, option.col, 1));
+				layer.matrixs.add(Make.matrix("db", "zero", option.col, 1));
 			}else {
 				layer.matrixs.add(Make.matrix("b", "zero", option.col, 1));
 				layer.matrixs.add(Make.matrix("db", "zero", option.col, 1));
 			}
+			layer.matrixs.add(Make.matrix("w_param_1", "zero", option.col, option.row));
+			layer.matrixs.add(Make.matrix("b_param_1", "zero", option.col, 1));
+			
+			layer.matrixs.add(Make.matrix("w_param_2", "zero", option.col, option.row));
+			layer.matrixs.add(Make.matrix("b_param_2", "zero", option.col, 1));
 		}
 		if(option.name.equals("hidden")) {
 			layer.matrixs.add(Make.matrix("affine", "zero", option.col, option.row));
@@ -154,12 +165,12 @@ public class Make {
 				LayerOption inputoption = layeroption("input", model.options.step.get(i), 1);
 				model.layers.add(layer(inputoption));
 			}else if(i == model.options.step.size()-1) {
-				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.softmax, options.weight_parameter);
+				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.bias, options.weight_parameter);
 				model.layers.add(layer(weightoption));
 				LayerOption outputoption = layeroption("output", model.options.step.get(i), 1 , options.activity_gradient , options.cost_loss , options.softmax);
 				model.layers.add(layer(outputoption));
 			}else {
-				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.softmax, options.weight_parameter);
+				LayerOption weightoption = Make.layeroption("weight", model.options.step.get(i), model.options.step.get(i-1), options.update, options.bias, options.weight_parameter);
 				model.layers.add(layer(weightoption));
 				LayerOption hiddenoption = Make.layeroption("hidden", model.options.step.get(i), 1 , options.activity_gradient);
 				model.layers.add(layer(hiddenoption));
